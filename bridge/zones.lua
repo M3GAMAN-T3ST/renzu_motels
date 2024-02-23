@@ -66,8 +66,8 @@ end
 MotelFunction = function(data)
 	if not data.Mlo and data.type ~= 'door' then return end
 	local options = {}
+	local doorindex = data.index + (joaat(data.motel))
 	if data.type == 'door' then
-		local doorindex = data.doorindex + (joaat(data.motel))
 		AddDoorToSystem(doorindex, data.door, data.coord)
 		SetDoorState(data)
 		local blip = AddBlipForCoord(data.coord.x,data.coord.y,data.coord.z)
@@ -81,7 +81,6 @@ MotelFunction = function(data)
 		EndTextCommandSetBlipName(blip)
 		table.insert(blips,blip)
 	end
-
 	local point = lib.points.new(data.coord, 2)
 	
 	function point:onEnter()
@@ -94,7 +93,7 @@ MotelFunction = function(data)
 	end
 	
 	function point:nearby()
-		DrawMarker(2, self.coords.x, self.coords.y, self.coords.z, 0.0, 0.0, 0.0, 0.0, 180.0, 0.0, 0.4, 0.4, 0.4, 200, 255, 255, 50, false, true, 2, nil, nil, false)
+		-- DrawMarker(2, self.coords.x, self.coords.y, self.coords.z, 0.0, 0.0, 0.0, 0.0, 180.0, 0.0, 0.4, 0.4, 0.4, 200, 255, 255, 50, false, true, 2, nil, nil, false)
 	
 		if self.currentDistance < 1 and IsControlJustReleased(0, 38) then
 			ZoneMenu(data)
@@ -167,7 +166,7 @@ ShellTargets = function(data,offsets,loc,house)
 		end
 		
 		function point:nearby()
-			DrawMarker(2, self.coords.x, self.coords.y, self.coords.z, 0.0, 0.0, 0.0, 0.0, 180.0, 0.0, 0.4, 0.4, 0.4, 200, 255, 255, 50, false, true, 2, nil, nil, false)
+			-- DrawMarker(2, self.coords.x, self.coords.y, self.coords.z, 0.0, 0.0, 0.0, 0.0, 180.0, 0.0, 0.4, 0.4, 0.4, 200, 255, 255, 50, false, true, 2, nil, nil, false)
 		
 			if self.currentDistance < 1 and IsControlJustReleased(0, 38) then
 				RoomMenu(k,data)
